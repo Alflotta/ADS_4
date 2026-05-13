@@ -1,0 +1,106 @@
+Breadth First Search (BFS)
+
+Graph adjacency lists:
+
+A: C B D
+B: A C E G
+C: A B D
+D: C A
+E: G F B
+F: G E
+G: F B
+
+
+Source node: A
+
+
+Detailed BFS Trace:
+
+Step 1:
+Start at A
+
+Visited: A
+Queue: A
+
+
+Step 2:
+Remove A from queue
+
+Neighbors of A: C, B, D
+
+Add C, B, D to queue
+
+Visited: A, C, B, D
+Queue: C, B, D
+
+
+Step 3:
+Remove C from queue
+
+Neighbors of C: A, B, D
+
+All already visited
+
+Visited: A, C, B, D
+Queue: B, D
+
+
+Step 4:
+Remove B from queue
+
+Neighbors of B: A, C, E, G
+
+E and G are unvisited
+Add E and G to queue
+
+Visited: A, C, B, D, E, G
+Queue: D, E, G
+
+
+Step 5:
+Remove D from queue
+
+Neighbors of D: C, A
+
+Both already visited
+
+Visited: A, C, B, D, E, G
+Queue: E, G
+
+
+Step 6:
+Remove E from queue
+
+Neighbors of E: G, F, B
+
+F is unvisited
+Add F to queue
+
+Visited: A, C, B, D, E, G, F
+Queue: G, F
+
+
+Step 7:
+Remove G from queue
+
+Neighbors of G: F, B
+
+Both already visited
+
+Visited: A, C, B, D, E, G, F
+Queue: F
+
+
+Step 8:
+Remove F from queue
+
+Neighbors of F: G, E
+
+Both already visited
+
+Queue: empty
+
+
+Final BFS Traversal Order:
+
+A -> C -> B -> D -> E -> G -> F

@@ -1,0 +1,58 @@
+Depth First Search (DFS)
+
+Graph adjacency lists:
+
+A: C B D
+B: A C E G
+C: A B D
+D: C A
+E: G F B
+F: G E
+G: F B
+
+
+Source node: A
+
+
+Detailed DFS Trace:
+
+1. Start at A
+   Visited: A
+
+2. From A go to C
+   Visited: A, C
+
+3. From C go to B
+   Visited: A, C, B
+
+4. From B go to E
+   Visited: A, C, B, E
+
+5. From E go to G
+   Visited: A, C, B, E, G
+
+6. From G go to F
+   Visited: A, C, B, E, G, F
+
+7. F has no unvisited neighbors
+   Backtrack to G
+
+8. G has no unvisited neighbors
+   Backtrack to E
+
+9. E has no unvisited neighbors
+   Backtrack to B
+
+10. B has no unvisited neighbors
+    Backtrack to C
+
+11. From C go to D
+    Visited: A, C, B, E, G, F, D
+
+12. D has no unvisited neighbors
+    DFS completed
+
+
+Final DFS Traversal Order:
+
+A -> C -> B -> E -> G -> F -> D
