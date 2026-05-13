@@ -1,0 +1,70 @@
+Dijkstra’s Shortest Path Algorithm
+
+Source: Edinburgh
+Destination: Dundee
+
+
+Initialisation:
+distTo[Edinburgh] = 0
+All others = ∞
+
+pq = {(0, Edinburgh)}
+
+
+Iteration 1:
+Extract Edinburgh (0)
+
+Update:
+Stirling = 37
+Perth = 44
+Glasgow = 46
+
+pq = {(37, Stirling), (44, Perth), (46, Glasgow)}
+
+
+Iteration 2:
+Extract Stirling (37)
+
+Check neighbours:
+Glasgow = 65 > 46 → no update
+Perth = 72 > 44 → no update
+Dundee = 85 < ∞ → update
+
+distTo[Dundee] = 85
+edgeTo[Dundee] = Stirling
+
+pq = {(44, Perth), (46, Glasgow), (85, Dundee)}
+
+
+Iteration 3:
+Extract Perth (44)
+
+Check neighbours:
+Dundee = 66 < 85 → update
+Inverness = 154
+
+distTo[Dundee] = 66
+edgeTo[Dundee] = Perth
+
+pq = {(46, Glasgow), (66, Dundee), (154, Inverness)}
+
+
+Iteration 4:
+Extract Glasgow (46)
+
+No shorter paths found.
+
+pq = {(66, Dundee), (154, Inverness)}
+
+
+Iteration 5:
+Extract Dundee (66)
+
+Destination reached.
+
+
+Shortest Path:
+Edinburgh → Perth → Dundee
+
+Total Distance:
+44 + 22 = 66 miles
