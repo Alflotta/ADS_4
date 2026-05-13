@@ -1,0 +1,110 @@
+====================================================================
+TASK 1 – Depth First Search (DFS) Trace
+Source node: A
+Reference: Sedgewick & Wayne, Algorithms 4th Edition, p.537
+====================================================================
+
+GRAPH (Adjacency Lists):
+  A: C B D
+  B: A C E G
+  C: A B D
+  D: C A
+  E: G F B
+  F: G E
+  G: F B
+
+--------------------------------------------------------------------
+DATA STRUCTURES:
+  marked[]  – boolean array, tracks visited vertices
+  edgeTo[]  – stores the vertex from which each vertex was discovered
+--------------------------------------------------------------------
+
+DETAILED TRACE:
+(Sedgewick & Wayne style – recursive DFS)
+
+Step 1: dfs(A)
+  marked[A] = true
+  Examine adjacency list of A: [C, B, D]
+    → C not marked → edgeTo[C] = A → dfs(C)
+
+  Step 2: dfs(C)
+    marked[C] = true
+    Examine adjacency list of C: [A, B, D]
+      → A already marked, skip
+      → B not marked → edgeTo[B] = C → dfs(B)
+
+    Step 3: dfs(B)
+      marked[B] = true
+      Examine adjacency list of B: [A, C, E, G]
+        → A already marked, skip
+        → C already marked, skip
+        → E not marked → edgeTo[E] = B → dfs(E)
+
+      Step 4: dfs(E)
+        marked[E] = true
+        Examine adjacency list of E: [G, F, B]
+          → G not marked → edgeTo[G] = E → dfs(G)
+
+        Step 5: dfs(G)
+          marked[G] = true
+          Examine adjacency list of G: [F, B]
+            → F not marked → edgeTo[F] = G → dfs(F)
+
+          Step 6: dfs(F)
+            marked[F] = true
+            Examine adjacency list of F: [G, E]
+              → G already marked, skip
+              → E already marked, skip
+            Return from dfs(F)  ← no unvisited neighbors
+
+          Back in dfs(G):
+            → B already marked, skip
+          Return from dfs(G)
+
+        Back in dfs(E):
+          → F already marked, skip
+          → B already marked, skip
+        Return from dfs(E)
+
+      Back in dfs(B):
+        → G already marked, skip
+      Return from dfs(B)
+
+    Back in dfs(C):
+      → D not marked → edgeTo[D] = C → dfs(D)
+
+    Step 7: dfs(D)
+      marked[D] = true
+      Examine adjacency list of D: [C, A]
+        → C already marked, skip
+        → A already marked, skip
+      Return from dfs(D)
+
+  Back in dfs(C):
+    (adjacency list exhausted)
+  Return from dfs(C)
+
+Back in dfs(A):
+  → B already marked, skip
+  → D already marked, skip
+Return from dfs(A)
+
+DFS complete.
+
+--------------------------------------------------------------------
+RESULTS SUMMARY:
+  Visit order: A → C → B → E → G → F → D
+
+  marked[]:  A=T, B=T, C=T, D=T, E=T, F=T, G=T
+
+  edgeTo[]:
+    C ← A
+    B ← C
+    E ← B
+    G ← E
+    F ← G
+    D ← C
+    (A is source, no parent)
+
+  All 7 vertices are reachable from A → the graph is connected.
+====================================================================
